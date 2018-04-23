@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
+
+  <title>MongoDB GeekOut</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="assets/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://sites.miis.edu/metalab/">META Lab</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLScKHzelJT7Vif5rNRo-YgvRk0WHpPd78ZZDmYDo3EMQEdf0lw/viewform?usp=sf_link" target="_blank">Sign In</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                Home
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" >
+                Why MongoDB
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="create.html">
+                Create
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="read.html">
+                Read
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="update.html">
+                Update
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="delete.html">
+                Delete
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="practice.html">
+                Practice
+                
+              </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Prerequisite</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="osx.html">
+                Installing on Mac
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="windows.html">
+                Installing on Windows
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2 text-centered">Update Operations</h1>
+        </div>
+        <p>Update operations modify existing documents in a collection. </p>
+        
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">CREATING A COLLECTION:</h4>
+          <p>If the collection does not currently exist, insert operations will create the collection.</p>
+          <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+          <code>mongoimport --db gtd --collection terror --type csv --headerline --file C:/Users/carlo/Downloads/gtdb2.csv</code>
+        </div>
+        <div class="container">
+          <p>MongoDB provides the following methods to update documents of a collection:</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><code>db.collection.updateOne()</code> --	Updates a single document within the collection based on the filter.</li>
+            <li class="list-group-item"><code>db.collection.updateMany()</code> -- Inserts multiple documents into a collection.</li>
+            <li class="list-group-item"><code>db.collection.replaceOne()</code> -- Inserts a single document or multiple documents into a collection.</li>
+          </ul>
+          
+          
+          <h2>Update a Single Document</h2>
+          <p>The following example uses the db.collection.updateOne() method on the inventory collection to update the first document where item equals "paper":</p>
+          <pre>
+            db.inventory.updateOne(
+                { item: "paper" },
+                {
+                    $set: { "size.uom": "cm", status: "P" },
+                    $currentDate: { lastModified: true }
+                }
+            )
+          </pre>
+          <p>The update operation:</p>
+          <ul>
+              <li>uses the <code>$set</code> operator to update the value of the size.uom field to "cm" and the value of the status field to "P",</li>
+              <li>uses the <code>$currentDate</code> operator to update the value of the lastModified field to the current date. If lastModified field does not exist, $currentDate will create the field. </li>
+          </ul>
+          <h2>Update with Upsert</h2>
+          <p>The following operation attempts to update the document with name : "Pizza Rat's Pizzaria", while upsert: true:</p>
+          <pre>
+            db.inventory.updateOne(
+                { "name" : "Pizza Rat's Pizzaria" },
+                { $set: {"_id" : 4, "violations" : 7, "borough" : "Manhattan" } },
+                { upsert: true }
+             );
+          </pre>
+          <p></p>
+          <h2>Update Multiple Documents</h2>
+          <p>The following example uses the db.collection.updateMany() method on the inventory collection to update all documents where qty is less than 50:</p>
+          <pre>
+            db.inventory.updateMany(
+                { "qty": { $lt: 50 } },
+                {
+                  $set: { "size.uom": "in", status: "P" },
+                  $currentDate: { lastModified: true }
+                }
+             )
+          </pre>
+          <p>The update operation:</p>
+          <ul>
+              <li>uses the <code>$set</code> operator to update the value of the size.uom field to "in" and the value of the status field to "P",</li>
+              <li>uses the <code>$currentDate</code> operator to update the value of the lastModified field to the current date. If lastModified field does not exist, <code>$currentDate</code> will create the field. </li>
+          </ul>
+          
+          <img src="assets/img/updateMany.svg" class="img-fluid">
+          <h2>Replace a Document</h2>
+          <p>To replace the entire content of a document except for the _id field, pass an entirely new document as the second argument to <code>db.collection.replaceOne()</code>.</p>
+          <p>The following example replaces the first document from the inventory collection where item: "paper":</p>
+          <pre>
+            db.inventory.replaceOne(
+                { item: "paper" },
+                { item: "paper", instock: [ { warehouse: "A", qty: 60 }, { warehouse: "B", qty: 40 } ] }
+             )
+          </pre>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

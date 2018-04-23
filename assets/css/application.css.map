@@ -1,0 +1,1 @@
+{"version":3,"sources":["base/_base.scss"],"names":[],"mappings":"AAAA;EACI,WAAU,EACb","file":"application.css","sourcesContent":[".red-text{\r\n    color: red;\r\n}"]}

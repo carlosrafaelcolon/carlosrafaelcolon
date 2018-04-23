@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
+
+  <title>MongoDB GeekOut</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="assets/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://sites.miis.edu/metalab/">META Lab</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLScKHzelJT7Vif5rNRo-YgvRk0WHpPd78ZZDmYDo3EMQEdf0lw/viewform?usp=sf_link" target="_blank">Sign In</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                Home
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" >
+                Why MongoDB
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="create.html">
+                Create
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="read.html">
+                Read
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="update.html">
+                Update
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="delete.html">
+                Delete
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="practice.html">
+                Practice
+                
+              </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Prerequisite</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="osx.html">
+                Installing on Mac
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="windows.html">
+                Installing on Windows
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2 text-centered">Create Operations (Insert Documents)</h1>
+        </div>
+        <p>This page provides examples of insert operations in MongoDB.</p>
+          <p>Visit <a href="https://docs.mongodb.com/manual/tutorial/insert-documents/" target="_blank">https://docs.mongodb.com/manual/tutorial/insert-documents/</a></p>
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">CREATING A COLLECTION:</h4>
+          <p>If the collection does not currently exist, insert operations will create the collection.</p>
+          <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+          <code>mongoimport --db gtd --collection terror --type csv --headerline --file C:/Users/carlo/Downloads/gtdb2.csv</code>
+        </div>
+        <div class="container">
+          <p>MongoDB provides the following methods for inserting documents into a collection:</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><code>db.collection.insertOne()</code> --	Inserts a single document into a collection.</li>
+            <li class="list-group-item"><code>db.collection.insertMany()</code> -- Inserts multiple documents into a collection.</li>
+            <li class="list-group-item"><code>db.collection.insert()</code> -- Inserts a single document or multiple documents into a collection.</li>
+          </ul>
+          
+          
+          <h2>Insert a Single Document with insertOne()</h2>
+          <p>
+            <code>db.collection.insertOne()</code> inserts a single document into a collection.</p>
+          <p>The following example inserts a new document into the inventory collection. If the document does not specify an
+            _id field, MongoDB adds the _id field with an ObjectId value to the new document.</p>
+
+          <code>use art</code>
+          <br>
+          <code>
+            db.inventory.insertOne( { item: "canvas", qty: 100, tags: ["cotton"], size: { h: 28, w: 35.5, uom: "cm" } } )
+          </code>
+          <br>
+          <br>
+          <ul>
+            <li>
+              <code>use art</code> points you to the database. If database does not currently exist,
+              <strong>"use"</strong> followed by any word will create one</li>
+            <li>
+              <code>inventory</code> is the collection</li>
+            <li>
+              <code>insertOne()</code> is the function that creates a document. This also returns a document that includes the
+              newly inserted document’s _id field value. </li>
+          </ul>
+          <img src="assets/img/insertOne.svg" class="img-fluid">
+          <h2>Insert Multiple Documents with insertMany()</h2>
+          <p>
+            <code>db.collection.insertMany()</code> can insert multiple documents into a collection. Pass an array of documents
+            to the method.</p>
+          <p>The following example inserts three new documents into the inventory collection. If the documents do not specify
+            an _id field, MongoDB adds the _id field with an ObjectId value to each document. </p>
+          <br>
+          <pre>
+            use art
+            db.inventory.insertMany([
+                { item: "journal", qty: 25, tags: ["blank", "red"], size: { h: 14, w: 21, uom: "cm" } },
+                { item: "mat", qty: 85, tags: ["gray"], size: { h: 27.9, w: 35.5, uom: "cm" } },
+                { item: "mousepad", qty: 25, tags: ["gel", "blue"], size: { h: 19, w: 22.85, uom: "cm" } }
+            ])
+          </pre>
+          <h2>Additional Methods for Inserts</h2>
+          <p>
+            The following methods can also add new documents to a collection:
+          </p>
+          <ul>
+            <li>
+              <code>db.collection.update()</code> when used with the upsert: true option.</li>
+            <li>
+              <code>db.collection.updateOne()</code> when used with the upsert: true option.</li>
+            <li>
+              <code>db.collection.updateMany()</code> when used with the upsert: true option.</li>
+            <li>
+              <code>db.collection.findAndModify()</code> when used with the upsert: true option.</li>
+            <li>
+              <code>db.collection.findOneAndUpdate()</code> when used with the upsert: true option.</li>
+            <li>
+              <code>db.collection.findOneAndReplace()</code> when used with the upsert: true option.</li>
+            <li>
+              <code>db.collection.save()</code>.</li>
+            <li>
+              <code>db.collection.bulkWrite()</code>.</li>
+          </ul>
+          <h2>What is upsert in MongoDB</h2>
+          <p>If <code>updateOne()</code>, <code>updateMany()</code>, or <code>replaceOne()</code> includes <strong>upsert : true</strong> and no documents match the specified filter, then the operation creates a new document and inserts it. If there are matching documents, then the operation modifies or replaces the matching document or documents.</p>
+          <p>In short, upsert is Optional. If set to true, creates a new document when no documents matches the query criteria. The default value is false, which does <em>not</em> insert a new document when no match is found.</p>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

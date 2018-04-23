@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
+
+  <title>MongoDB GeekOut</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="assets/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://sites.miis.edu/metalab/">META Lab</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLScKHzelJT7Vif5rNRo-YgvRk0WHpPd78ZZDmYDo3EMQEdf0lw/viewform?usp=sf_link" target="_blank">Sign In</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                Home
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" >
+                Why MongoDB
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="create.html">
+                Create
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="read.html">
+                Read
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="update.html">
+                Update
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="delete.html">
+                Delete
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="practice.html">
+                Practice
+                
+              </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Prerequisite</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link active" href="osx.html">
+                Installing on Mac
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="windows.html">
+                Installing on Windows
+                
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2 text-centered">MongoDB setup on OSX</h1>
+        </div>
+
+        <h2>Install Homebrew</h2>
+        <br>
+        <code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code>
+        <br><br>
+        <p>Paste that at a Terminal prompt.</p>
+        <p>Homebrew installs the stuff you need that Apple didn’t. To learn more visit <a href="https://brew.sh/" target="_blank">https://brew.sh/</a></p>
+        <h2>Install MongoDB</h2>
+        <br>
+        <code>brew install mongo</code>
+        <br><br>
+        <p>Paste that at a Terminal prompt.</p>
+        <p>By default MongoDB requires you to have a directory on your hard drive where it can stash all your data. Therefore, we have to manually create the directory. To do so paste the code below at a Terminal prompt. May be prompted for your password to execute.</p>
+        <br>
+        <code>sudo mkdir -p /data/db</code>
+        <br><br>
+        <p>If permission is denied it means you have to take ownership of that directory (computer acknowledges that the path exists but questions whether you have the credentials to access it). </p>
+        <br>
+        <code>whoami</code>
+        <br><br>
+        <p>Paste that at a Terminal prompt. This will tell you the username of the currently logged in user. When you know you username you can run a command to take ownership of the <code>/data/db</code> directory. </p>
+        <br>
+        <code>sudo chown -Rv [insert returned username here without brackets] /data/db</code>
+        <br><br>
+        <p><code>-Rv</code> simply prints out a list of all the directories updated</p>
+        <h2>Start MongoDB</h2>
+        <p>It is important to note that to work with MongoDB there are two important components. First is the Mongo Server <code>mongod</code> and the Mongo shell <code>mongo</code>.</p>
+        <p>You first need to startup the mongo database (via <code>mongod</code>) before you can interact with it (via mongo shell <code>mongo</code>)</p>
+        <p>On a Mac/Linux operating system there are two ways you can start Mongo</p>
+        <ol>
+            <li><code>mongod</code></li>
+            <li><code>brew services start mongo</code></li>
+        </ol>
+        <p><strong>First</strong> approach starts up an instance of the MongoDB server. So each time you want to interact with the database you would have to make sure the server is on. <strong>Second</strong> approach tasks your computer (via <code>services</code>) to turn start the MongoDB server whenever you turn on your computer. In other words, the MongoDB server is always on in the background.</p>
+        <h2>Connect to MongoDB.</h2>
+        <p>When the database is turned on run <code>mongo</code> to open up the MongoDB shell</p>
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

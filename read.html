@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
+
+  <title>MongoDB GeekOut</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="assets/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://sites.miis.edu/metalab/">META Lab</a>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLScKHzelJT7Vif5rNRo-YgvRk0WHpPd78ZZDmYDo3EMQEdf0lw/viewform?usp=sf_link" target="_blank">Sign In</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">
+                Home
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" >
+                Why MongoDB
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="create.html">
+                Create
+                
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="read.html">
+                Read
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="update.html">
+                Update
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="delete.html">
+                Delete
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="practice.html">
+                Practice
+                
+              </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Prerequisite</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="osx.html">
+                Installing on Mac
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="windows.html">
+                Installing on Windows
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2 text-centered">Read Operations (Query Documents)</h1>
+        </div>
+        <p>Read operations retrieves documents from a collection; i.e. queries a collection for documents. </p>
+          <p>Visit <a href="https://docs.mongodb.com/manual/tutorial/insert-documents/" target="_blank">https://docs.mongodb.com/manual/tutorial/insert-documents/</a></p>
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">NOTE:</h4>
+          <p>This page provides examples of query operations using the db.collection.find() method in the mongo shell. The examples on this page use the inventory collection. To populate the inventory collection, run the following:
+        </p>
+        </div>
+        <pre>
+            db.inventory.insertMany([
+                { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+                { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A" },
+                { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+                { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+                { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" }
+            ]);
+        </pre>
+        <div class="container">
+          <p>MongoDB provides the following methods to read documents from a collection:</p>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><code>db.collection.find()</code> --	Selects documents in a collection or view and returns a cursor to the selected documents.</li>
+          </ul>
+          <h2>What is a Cursor?</h2>
+          <p>Executing <code>db.collection.find()</code> returns a cursor to the documents that match the query criteria. When the find() method “returns documents,” the method is actually returning a cursor to the documents. </p>
+          <p>Cursor is defined as a pointer to the result set of a query.</p>
+          <img src="assets/img/cursor.png" class="img-fluid">
+          <h2>Find/Select All Documents in a Collection</h2>
+          <p>The find() method with no parameters returns all documents from a collection and returns all fields for the documents. The query filter parameter determines the select criteria. For example, the following operation returns all documents in the inventory collection:</p>
+          <br>
+          <code>db.inventory.find( {} )</code>
+          <br>
+          <p>This operation corresponds to the following SQL statement:</p>
+          <br>
+          <code>SELECT * FROM inventory</code>
+          <pre>
+            use art
+            db.inventory.insertMany([
+                { item: "journal", qty: 25, tags: ["blank", "red"], size: { h: 14, w: 21, uom: "cm" } },
+                { item: "mat", qty: 85, tags: ["gray"], size: { h: 27.9, w: 35.5, uom: "cm" } },
+                { item: "mousepad", qty: 25, tags: ["gel", "blue"], size: { h: 19, w: 22.85, uom: "cm" } }
+            ])
+            <code>db.inventory.find()</code>
+          </pre>
+          <br>
+          <img src="assets/img/find.svg" class="img-fluid">
+          <h2>Find Documents that Match Query Criteria</h2>
+          <h3>Specify Equality Condition</h3>
+          <p>To specify equality conditions, use < field >:< value > expressions in the query filter document:</p>
+            <pre>{ < field1 >: < value1 >, ... }</code>
+        <p>The following example selects from the inventory collection all documents where the status equals "D":</p>
+        <code>db.inventory.find( { status: "D" } )</code>
+        <p></p>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

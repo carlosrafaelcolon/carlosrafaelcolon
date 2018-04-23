@@ -1,0 +1,18 @@
+{
+  "name": "mongo-geekout",
+  "version": "1.0.0",
+  "description": "Prepared for a Workshop on learning MongoDB",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-webserver": "^0.9.1"
+  }
+}
