@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
+
 
     <title>MongoDB GeekOut</title>
 
@@ -36,14 +36,15 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="index.html">
+                            <a class="nav-link" href="index.html">
                                 Home
-                                <span class="sr-only">(current)</span>
+                                
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">
-                                Why MongoDB
+                            <a class="nav-link active" href="mongo.html">
+                                SQL vs. NoSQL
+                                <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -95,7 +96,7 @@
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2 text-centered">Data Manipulation with MongoDB</h1>
+                    <h1 class="h2 text-centered">SQL vs. NoSQL</h1>
                 </div>
                 <div class="container">
 
@@ -111,8 +112,8 @@
                                 <strong>people</strong>.</li>
                         </ul>
                     </div>
-                    <table class="table">
-                        <thead>
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
                             <tr>
                                 <th>SQL Statements</th>
                                 <th>MongoDB Statements</th>
@@ -122,27 +123,13 @@
                             <tr>
                                 <td>
 
-                                    SELECT * FROM people
+                                    <code>SELECT * FROM people</code>
 
                                 </td>
                                 <td>
 
 
-                                    db.people.find()
-
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-
-                                    SELECT id, user_id, status FROM people
-
-                                </td>
-                                <td>
-
-
-                                    db.people.find( { }, { user_id: 1, status: 1 } )
+                                    <code>db.people.find()</code>
 
 
                                 </td>
@@ -150,40 +137,13 @@
                             <tr>
                                 <td>
 
-                                    SELECT * FROM people WHERE status = "A" OR age = 50
+                                    <code>SELECT id, user_id, status FROM people</code>
 
                                 </td>
                                 <td>
 
 
-                                    db.people.find( { $or: [ { status: "A" } , { age: 50 } ] } )
-
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-
-                                    SELECT * FROM people WHERE age > 25 AND age
-                                    <=5 0 </td>
-                                        <td>
-
-
-                                            db.people.find( { age: { $gt: 25, $lte: 50 } } )
-
-
-                                        </td>
-                            </tr>
-                            <tr>
-                                <td>
-
-                                    UPDATE people SET status = "C" WHERE age > 25
-
-                                </td>
-                                <td>
-
-
-                                    db.people.updateMany( { age: { $gt: 25 } }, { $set: { status: "C" } } )
+                                    <code>db.people.find( { }, { user_id: 1, status: 1 } )</code>
 
 
                                 </td>
@@ -191,13 +151,50 @@
                             <tr>
                                 <td>
 
-                                    DELETE FROM people WHERE status = "D"
+                                    <code>SELECT * FROM people WHERE status = "A" OR age = 50</code>
 
                                 </td>
                                 <td>
 
 
-                                    db.people.deleteMany( { status: "D" } )
+                                    <code>db.people.find( { $or: [ { status: "A" } , { age: 50 } ] } )</code>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <code>SELECT * FROM people WHERE age > 25 AND age <= 5 0 </code>
+                                </td>
+                                <td>
+                                    <code>db.people.find( { age: { $gt: 25, $lte: 50 } } )</code>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <code>UPDATE people SET status = "C" WHERE age > 25</code>
+
+                                </td>
+                                <td>
+
+
+                                    <code>db.people.updateMany( { age: { $gt: 25 } }, { $set: { status: "C" } } )</code>
+
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                    <code>DELETE FROM people WHERE status = "D"</code>
+
+                                </td>
+                                <td>
+
+
+                                    <code>db.people.deleteMany( { status: "D" } )</code>
 
 
                                 </td>
@@ -206,12 +203,12 @@
                     </table>
                     <figure class="figure">
                         <img src="assets/img/SQL-MongoDB.PNG" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+                        <figcaption class="figure-caption text-center">Terminology and Concepts</figcaption>
                     </figure>
                     <h2>Example</h2>
                     <p>Suppose a client needs a database design for his blog/website and see the differences between RDBMS and
                         MongoDB schema design. Website has the following requirements.</p>
-                    <ul>
+                    <ul class="size18">
                         <li>Every post has the unique title, description and url.</li>
                         <li>Every post can have one or more tags.</li>
                         <li>Every post has the name of its publisher and total number of likes.</li>
@@ -220,8 +217,7 @@
                     </ul>
                     <p>In RDBMS schema, design for above requirements will have minimum three tables.</p>
                     <figure class="figure">
-                        <img src="assets/img/rdbms.png" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+                        <img src="assets/img/rdbms.png" class="figure-img img-fluid rounded" alt="Three SQL tables">
                     </figure>
                     <p>While in MongoDB schema, design will have one collection post and the following structure −</p>
                     <pre class="prettyprint notranslate prettyprinted" style=""><span class="pun">{</span><span class="pln">

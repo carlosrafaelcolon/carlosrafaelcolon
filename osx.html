@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
 
   <title>MongoDB GeekOut</title>
 
@@ -40,9 +39,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" >
-                Why MongoDB
-              </a>
+                <a class="nav-link" href="mongo.html">
+                    SQL vs. NoSQL
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link " href="create.html">
@@ -101,38 +100,28 @@
         </div>
 
         <h2>Install Homebrew</h2>
-        <br>
-        <code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code>
-        <br><br>
+        <p><code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code></p>
         <p>Paste that at a Terminal prompt.</p>
         <p>Homebrew installs the stuff you need that Apple didn’t. To learn more visit <a href="https://brew.sh/" target="_blank">https://brew.sh/</a></p>
         <h2>Install MongoDB</h2>
-        <br>
-        <code>brew install mongo</code>
-        <br><br>
+        <p><code>brew install mongo</code></p>
         <p>Paste that at a Terminal prompt.</p>
         <p>By default MongoDB requires you to have a directory on your hard drive where it can stash all your data. Therefore, we have to manually create the directory. To do so paste the code below at a Terminal prompt. May be prompted for your password to execute.</p>
-        <br>
-        <code>sudo mkdir -p /data/db</code>
-        <br><br>
+        <p><code>sudo mkdir -p /data/db</code></p>
         <p>If permission is denied it means you have to take ownership of that directory (computer acknowledges that the path exists but questions whether you have the credentials to access it). </p>
-        <br>
-        <code>whoami</code>
-        <br><br>
+        <p><code>whoami</code></p>
         <p>Paste that at a Terminal prompt. This will tell you the username of the currently logged in user. When you know you username you can run a command to take ownership of the <code>/data/db</code> directory. </p>
-        <br>
-        <code>sudo chown -Rv [insert returned username here without brackets] /data/db</code>
-        <br><br>
+        <p><code>sudo chown -Rv [insert returned username here without brackets] /data/db</code></p>
         <p><code>-Rv</code> simply prints out a list of all the directories updated</p>
         <h2>Start MongoDB</h2>
-        <p>It is important to note that to work with MongoDB there are two important components. First is the Mongo Server <code>mongod</code> and the Mongo shell <code>mongo</code>.</p>
+        <p>It is important to note that to work with MongoDB there are two critical components. First is the Mongo Server <code>mongod</code> and the Mongo shell <code>mongo</code>.</p>
         <p>You first need to startup the mongo database (via <code>mongod</code>) before you can interact with it (via mongo shell <code>mongo</code>)</p>
         <p>On a Mac/Linux operating system there are two ways you can start Mongo</p>
-        <ol>
+        <ol class="size18">
             <li><code>mongod</code></li>
             <li><code>brew services start mongo</code></li>
         </ol>
-        <p><strong>First</strong> approach starts up an instance of the MongoDB server. So each time you want to interact with the database you would have to make sure the server is on. <strong>Second</strong> approach tasks your computer (via <code>services</code>) to turn start the MongoDB server whenever you turn on your computer. In other words, the MongoDB server is always on in the background.</p>
+        <p><strong>First</strong> approach starts up an instance of the MongoDB server. So each time you want to interact with the database you would have to make sure the server is on. <strong>Second</strong> approach tasks your computer (via <code>services</code>) to start the MongoDB server whenever you turn on your computer. In other words, the MongoDB server is always on in the background.</p>
         <h2>Connect to MongoDB.</h2>
         <p>When the database is turned on run <code>mongo</code> to open up the MongoDB shell</p>
       </main>

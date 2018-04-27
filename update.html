@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
 
   <title>MongoDB GeekOut</title>
 
@@ -40,9 +39,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" >
-                Why MongoDB
-              </a>
+                <a class="nav-link" href="mongo.html">
+                    SQL vs. NoSQL
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link " href="create.html">
@@ -97,25 +96,38 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2 text-centered">Update Operations</h1>
         </div>
-        <p>Update operations modify existing documents in a collection. </p>
+        <p style="color:red">Update operations modify existing documents in a collection. </p>
         
         <div class="alert alert-success" role="alert">
-          <h4 class="alert-heading">CREATING A COLLECTION:</h4>
-          <p>If the collection does not currently exist, insert operations will create the collection.</p>
-          <hr>
-  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-          <code>mongoimport --db gtd --collection terror --type csv --headerline --file C:/Users/carlo/Downloads/gtdb2.csv</code>
-        </div>
+            <h4 class="alert-heading">NOTE:</h4>
+            <p>The examples on this page use the inventory collection. To create and/or populate the inventory collection, run the following:
+            </p>
+          </div>
+          <pre>
+              db.inventory.insertMany( [
+                  { item: "canvas", qty: 100, size: { h: 28, w: 35.5, uom: "cm" }, status: "A" },
+                  { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+                  { item: "mat", qty: 85, size: { h: 27.9, w: 35.5, uom: "cm" }, status: "A" },
+                  { item: "mousepad", qty: 25, size: { h: 19, w: 22.85, uom: "cm" }, status: "P" },
+                  { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "P" },
+                  { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+                  { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+                  { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" },
+                  { item: "sketchbook", qty: 80, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+                  { item: "sketch pad", qty: 95, size: { h: 22.85, w: 30.5, uom: "cm" }, status: "A" }
+              ] );
+          </pre>
         <div class="container">
           <p>MongoDB provides the following methods to update documents of a collection:</p>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><code>db.collection.updateOne()</code> --	Updates a single document within the collection based on the filter.</li>
-            <li class="list-group-item"><code>db.collection.updateMany()</code> -- Inserts multiple documents into a collection.</li>
-            <li class="list-group-item"><code>db.collection.replaceOne()</code> -- Inserts a single document or multiple documents into a collection.</li>
+            <li class="list-group-item"><code>db.collection.updateOne(&lt;filter&gt;, &lt;update&gt;, &lt;options&gt;)</code> --	Updates a single document within the collection based on the filter.</li>
+            <li class="list-group-item"><code>db.collection.updateMany(&lt;filter&gt;, &lt;update&gt;, &lt;options&gt;)</code> -- Updates multiple documents within the collection based on the filter.</li>
+            <li class="list-group-item"><code>db.collection.replaceOne(&lt;filter&gt;, &lt;update&gt;, &lt;options&gt;)</code> -- Replaces a single document within the collection based on the filter.</li>
           </ul>
           
           
           <h2>Update a Single Document</h2>
+          <p>To update a document, MongoDB provides update operators, such as <code>$set</code>, to modify field values.</p>
           <p>The following example uses the db.collection.updateOne() method on the inventory collection to update the first document where item equals "paper":</p>
           <pre>
             db.inventory.updateOne(
@@ -127,12 +139,12 @@
             )
           </pre>
           <p>The update operation:</p>
-          <ul>
+          <ul class="size18">
               <li>uses the <code>$set</code> operator to update the value of the size.uom field to "cm" and the value of the status field to "P",</li>
               <li>uses the <code>$currentDate</code> operator to update the value of the lastModified field to the current date. If lastModified field does not exist, $currentDate will create the field. </li>
           </ul>
           <h2>Update with Upsert</h2>
-          <p>The following operation attempts to update the document with name : "Pizza Rat's Pizzaria", while upsert: true:</p>
+          <p>The following operation attempts to update the document with name : "Pizza Rat's Pizzaria", while <strong>upsert: true</strong></p>
           <pre>
             db.inventory.updateOne(
                 { "name" : "Pizza Rat's Pizzaria" },
@@ -140,7 +152,6 @@
                 { upsert: true }
              );
           </pre>
-          <p></p>
           <h2>Update Multiple Documents</h2>
           <p>The following example uses the db.collection.updateMany() method on the inventory collection to update all documents where qty is less than 50:</p>
           <pre>
@@ -153,12 +164,15 @@
              )
           </pre>
           <p>The update operation:</p>
-          <ul>
+          <ul class="size18">
               <li>uses the <code>$set</code> operator to update the value of the size.uom field to "in" and the value of the status field to "P",</li>
               <li>uses the <code>$currentDate</code> operator to update the value of the lastModified field to the current date. If lastModified field does not exist, <code>$currentDate</code> will create the field. </li>
           </ul>
           
-          <img src="assets/img/updateMany.svg" class="img-fluid">
+          <figure class="figure">
+              <img src="assets/img/updateMany.svg" class="figure-img img-fluid rounded" alt="updateMany Method">
+              <figcaption class="figure-caption text-center">updateMany Method using Less Than Query Operator to Filter Documents</figcaption>
+          </figure>
           <h2>Replace a Document</h2>
           <p>To replace the entire content of a document except for the _id field, pass an entirely new document as the second argument to <code>db.collection.replaceOne()</code>.</p>
           <p>The following example replaces the first document from the inventory collection where item: "paper":</p>

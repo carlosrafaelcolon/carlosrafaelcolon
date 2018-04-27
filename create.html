@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
+
 
   <title>MongoDB GeekOut</title>
 
@@ -16,6 +16,7 @@
 
   <!-- Custom styles for this template -->
   <link href="assets/css/dashboard.css" rel="stylesheet">
+  <link href="assets/css/application.css" rel="stylesheet">
 </head>
 
 <body>
@@ -23,7 +24,8 @@
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://sites.miis.edu/metalab/">META Lab</a>
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
-        <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLScKHzelJT7Vif5rNRo-YgvRk0WHpPd78ZZDmYDo3EMQEdf0lw/viewform?usp=sf_link" target="_blank">Sign In</a>
+        <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLScKHzelJT7Vif5rNRo-YgvRk0WHpPd78ZZDmYDo3EMQEdf0lw/viewform?usp=sf_link"
+          target="_blank">Sign In</a>
       </li>
     </ul>
   </nav>
@@ -36,13 +38,13 @@
             <li class="nav-item">
               <a class="nav-link" href="index.html">
                 Home
-                
+
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" >
-                Why MongoDB
-              </a>
+                <a class="nav-link" href="mongo.html">
+                    SQL vs. NoSQL
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" href="create.html">
@@ -68,7 +70,7 @@
             <li class="nav-item">
               <a class="nav-link" href="practice.html">
                 Practice
-                
+
               </a>
             </li>
           </ul>
@@ -95,38 +97,62 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2 text-centered">Create Operations (Insert Documents)</h1>
         </div>
-        <p>This page provides examples of insert operations in MongoDB.</p>
-          <p>Visit <a href="https://docs.mongodb.com/manual/tutorial/insert-documents/" target="_blank">https://docs.mongodb.com/manual/tutorial/insert-documents/</a></p>
+        <p>Visit
+          <a href="https://docs.mongodb.com/manual/tutorial/insert-documents/" target="_blank">https://docs.mongodb.com/manual/tutorial/insert-documents/</a>
+        </p>
+
+        <h2>The use Command</h2>
+        <p>MongoDB
+          <strong>use DATABASE_NAME</strong> is used to create a database. The command will create a new database if it doesn't exist, otherwise it will return the existing database.</p>
+        <h3>Syntax</h3>
+        <p>Basic syntax of <strong>use DATABASE</strong> statement is as follows −</p>
+        <pre>use DATABASE_NAME</pre>
+        <h3>Example</h3>
+        <p>If you want to create a database with name
+          <strong>
+            < mydb>
+          </strong>, then use DATABASE statement would be as follows −</p>
+        <pre>
+          >use mydb
+          switched to db mydb
+        </pre>
+        <p>To check your currently selected database, use the command db</p>
+        <pre>
+          >db
+          mydb
+        </pre>
+        <hr>
         <div class="alert alert-success" role="alert">
           <h4 class="alert-heading">CREATING A COLLECTION:</h4>
           <p>If the collection does not currently exist, insert operations will create the collection.</p>
-          <hr>
-  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-          <code>mongoimport --db gtd --collection terror --type csv --headerline --file C:/Users/carlo/Downloads/gtdb2.csv</code>
         </div>
         <div class="container">
           <p>MongoDB provides the following methods for inserting documents into a collection:</p>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><code>db.collection.insertOne()</code> --	Inserts a single document into a collection.</li>
-            <li class="list-group-item"><code>db.collection.insertMany()</code> -- Inserts multiple documents into a collection.</li>
-            <li class="list-group-item"><code>db.collection.insert()</code> -- Inserts a single document or multiple documents into a collection.</li>
+            <li class="list-group-item">
+              <code>db.collection.insertOne()</code> -- Inserts a single document into a collection.</li>
+            <li class="list-group-item">
+              <code>db.collection.insertMany()</code> -- Inserts multiple documents into a collection.</li>
+            <li class="list-group-item">
+              <code>db.collection.insert()</code> -- Inserts a single document or multiple documents into a collection.</li>
           </ul>
-          
-          
+
+
           <h2>Insert a Single Document with insertOne()</h2>
           <p>
             <code>db.collection.insertOne()</code> inserts a single document into a collection.</p>
           <p>The following example inserts a new document into the inventory collection. If the document does not specify an
             _id field, MongoDB adds the _id field with an ObjectId value to the new document.</p>
 
-          <code>use art</code>
+          <p>First switch to a db: <code>use art</code></p>
           <br>
+          <p>Then,</p>
           <code>
             db.inventory.insertOne( { item: "canvas", qty: 100, tags: ["cotton"], size: { h: 28, w: 35.5, uom: "cm" } } )
           </code>
           <br>
           <br>
-          <ul>
+          <ul class="size18">
             <li>
               <code>use art</code> points you to the database. If database does not currently exist,
               <strong>"use"</strong> followed by any word will create one</li>
@@ -145,18 +171,45 @@
             an _id field, MongoDB adds the _id field with an ObjectId value to each document. </p>
           <br>
           <pre>
-            use art
             db.inventory.insertMany([
                 { item: "journal", qty: 25, tags: ["blank", "red"], size: { h: 14, w: 21, uom: "cm" } },
                 { item: "mat", qty: 85, tags: ["gray"], size: { h: 27.9, w: 35.5, uom: "cm" } },
                 { item: "mousepad", qty: 25, tags: ["gel", "blue"], size: { h: 19, w: 22.85, uom: "cm" } }
             ])
           </pre>
+          <h2>Another Example</h2>
+          <pre class="prettyprint notranslate prettyprinted" style=""><span class="pun">&gt;</span><span class="pln">db</span><span class="pun">.</span><span class="pln">post</span><span class="pun">.</span><span class="pln">insert</span><span class="pun">([</span><span class="pln">
+            </span><span class="pun">{</span><span class="pln">
+               title</span><span class="pun">:</span><span class="pln"> </span><span class="str">'MongoDB Overview'</span><span class="pun">,</span><span class="pln"> 
+               description</span><span class="pun">:</span><span class="pln"> </span><span class="str">'MongoDB is no sql database'</span><span class="pun">,</span><span class="pln">
+               </span><span class="kwd">by</span><span class="pun">:</span><span class="pln"> </span><span class="str">'tutorials point'</span><span class="pun">,</span><span class="pln">
+               url</span><span class="pun">:</span><span class="pln"> </span><span class="str">'http://www.tutorialspoint.com'</span><span class="pun">,</span><span class="pln">
+               tags</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">'mongodb'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'database'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'NoSQL'</span><span class="pun">],</span><span class="pln">
+               likes</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pln">
+            </span><span class="pun">},</span><span class="pln">
+           
+            </span><span class="pun">{</span><span class="pln">
+               title</span><span class="pun">:</span><span class="pln"> </span><span class="str">'NoSQL Database'</span><span class="pun">,</span><span class="pln"> 
+               description</span><span class="pun">:</span><span class="pln"> </span><span class="str">"NoSQL database doesn't have tables"</span><span class="pun">,</span><span class="pln">
+               </span><span class="kwd">by</span><span class="pun">:</span><span class="pln"> </span><span class="str">'tutorials point'</span><span class="pun">,</span><span class="pln">
+               url</span><span class="pun">:</span><span class="pln"> </span><span class="str">'http://www.tutorialspoint.com'</span><span class="pun">,</span><span class="pln">
+               tags</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">'mongodb'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'database'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'NoSQL'</span><span class="pun">],</span><span class="pln">
+               likes</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20</span><span class="pun">,</span><span class="pln"> 
+               comments</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">	
+                  </span><span class="pun">{</span><span class="pln">
+                     user</span><span class="pun">:</span><span class="str">'user1'</span><span class="pun">,</span><span class="pln">
+                     message</span><span class="pun">:</span><span class="pln"> </span><span class="str">'My first comment'</span><span class="pun">,</span><span class="pln">
+                     dateCreated</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">(</span><span class="lit">2013</span><span class="pun">,</span><span class="lit">11</span><span class="pun">,</span><span class="lit">10</span><span class="pun">,</span><span class="lit">2</span><span class="pun">,</span><span class="lit">35</span><span class="pun">),</span><span class="pln">
+                     like</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> 
+                  </span><span class="pun">}</span><span class="pln">
+               </span><span class="pun">]</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+         </span><span class="pun">])</span></pre>
           <h2>Additional Methods for Inserts</h2>
           <p>
             The following methods can also add new documents to a collection:
           </p>
-          <ul>
+          <ul class="size18">
             <li>
               <code>db.collection.update()</code> when used with the upsert: true option.</li>
             <li>
@@ -175,8 +228,16 @@
               <code>db.collection.bulkWrite()</code>.</li>
           </ul>
           <h2>What is upsert in MongoDB</h2>
-          <p>If <code>updateOne()</code>, <code>updateMany()</code>, or <code>replaceOne()</code> includes <strong>upsert : true</strong> and no documents match the specified filter, then the operation creates a new document and inserts it. If there are matching documents, then the operation modifies or replaces the matching document or documents.</p>
-          <p>In short, upsert is Optional. If set to true, creates a new document when no documents matches the query criteria. The default value is false, which does <em>not</em> insert a new document when no match is found.</p>
+          <p>If
+            <code>updateOne()</code>,
+            <code>updateMany()</code>, or
+            <code>replaceOne()</code> includes
+            <strong>upsert : true</strong> and no documents match the specified filter, then the operation creates a new document
+            and inserts it. If there are matching documents, then the operation modifies or replaces the matching document
+            or documents.</p>
+          <p>In short, upsert is Optional. If set to true, creates a new document when no documents matches the query criteria.
+            The default value is false, which does
+            <em>not</em> insert a new document when no match is found.</p>
         </div>
 
       </main>

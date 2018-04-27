@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
+
 
   <title>MongoDB GeekOut</title>
 
@@ -40,9 +40,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" >
-                Why MongoDB
-              </a>
+                <a class="nav-link" href="mongo.html">
+                    SQL vs. NoSQL
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="create.html">
@@ -98,22 +98,25 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2 text-centered">MongoDB setup on Windows</h1>
         </div>
-        
+        <div c;ass="container">
         <h2>Download MongoDB Installer</h2>
-        <ol>
+        <ol class="size18">
           <li>Vist the MongoDB Download Page: <a href="https://www.mongodb.com/download-center?jmp=nav#community" target="_blank">https://www.mongodb.com/download-center?jmp=nav#community</a></li>
           <li>Go to the Community Server section and make sure you are on the Windows selector.</li>
           <li>Click the download button</li>
           <li>Once the installer pops up just click through it. Select the complete/default option (just do not click to customs option).</li>
           <li>If you get a user control prompt just let it through</li>
         </ol>
-        <img src="assets/img/comserver.png" class="img-fluid" >
+        <figure class="figure">
+            <img src="assets/img/comserver.png" class="figure-img img-fluid rounded" alt="Download Page">
+            <figcaption class="figure-caption text-center">Screenshot of MongoDB Download Page</figcaption>
+        </figure>
         <br>
         <h2>Set up the MongoDB environment.</h2>
         <p>MongoDB requires a data directory to store all data. MongoDB’s default data directory path is the absolute path \data\db on the drive from which you start MongoDB. Create this folder by running the following command in a Command Prompt</p>
-        <br>
-        <code>md \data\db</code>
-        <br><br>
+
+        <p><code>md \data\db</code></p>
+
         <h2>Start MongoDB</h2>
         <div class="alert alert-success" role="alert">
           <h4 class="alert-heading">NOTE:</h4>
@@ -121,15 +124,15 @@
         </div>
         <p>To start MongoDB, run exe. For example, from the Command Prompt</p>
         <br>
-        <code>"C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"</code>
+        <p><code>"C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"</code></p>
         <br>
         <h2>Connect to MongoDB</h2>
         <p>To connect to MongoDB through the ~bin.mongo.exe shell, open another Command Prompt.</p>
         <br>
-        <code>"C:\Program Files\MongoDB\Server\3.6\bin\mongo.exe"</code>
+        <p><code>"C:\Program Files\MongoDB\Server\3.6\bin\mongo.exe"</code></p>
         <h2>Set PATH variable</h2>
         <p>Ideally you would set the MongoDB path as a PATH variable to not have to insert the absolute path each to the start MongoDB and then connect to it. The PATH is the system variable that your operating system uses to locate needed executables from the command line or Terminal window.</p>
-        <ol>
+        <ol class="size18">
           <li>In Search, search for <strong>Control Panel</strong> and then select: <strong>System</strong></li>
           <li>Click the <strong>Advanced system</strong> settings link.</li>
           <li>Click <strong>Environment Variables</strong>. In the section <strong>System Variables</strong>, find the PATH environment variable and select it. Click <strong>Edit</strong>. If the PATH environment variable does not exist, click New.</li>
@@ -138,24 +141,41 @@
         </ol>
         <h3>Search for Control Panel</h3>
         <br>
-        <img src="assets/img/searchpath.png" class="img-fluid" >
+        <figure class="figure">
+            <img src="assets/img/searchpath.png"class="figure-img img-fluid rounded" alt="Download Page">
+            <figcaption class="figure-caption text-center">Screenshot of Searching For the Control Panel via Search Bar in Windows 10</figcaption>
+        </figure>
         <br>
         <h3>Click System</h3>
         <br>
-        <img src="assets/img/system.png" class="img-fluid" >
+        <figure class="figure">
+            <img  src="assets/img/system.png" class="figure-img img-fluid rounded" alt="Download Page">
+            <figcaption class="figure-caption text-center">Screenshot of the Control Panel in Windows 10</figcaption>
+        </figure>
         <br>
         <h3>Then Advanced Settings. May see a pop up. Look for environment variables and click that.</h3>
         <br>
-        <img src="assets/img/popup.png" class="img-fluid" >
+  
+        <figure class="figure">
+            <img  src="assets/img/popup.png" class="figure-img img-fluid rounded" alt="Download Page">
+            <figcaption class="figure-caption text-center">After clicking System go to Advance System settings at the left hand side of the screen. This pop up will then appear if you are on Windows 10</figcaption>
+        </figure>
         <br>
         <h3>Find the PATH environment variable and select it. Click <strong>Edit</strong>.</h3>
         <br>
-        <img src="assets/img/path.png" class="img-fluid" >
+        <figure class="figure">
+            <img  src="assets/img/path.png" class="figure-img img-fluid rounded" alt="Download Page">
+            <figcaption class="figure-caption text-center">Screenshot of the Environment Variables pop up in Windows 10</figcaption>
+        </figure>
         <br>
-        <h3> If the PATH environment variable does not exist, click New.</h3>
+        <h3> If the PATH environment variable does not exist, click New. Copy and paste this string path: "C:\Program Files\MongoDB\Server\3.6\bin"</h3>
         <br>
-        <img src="assets/img/editp.png" class="img-fluid" >
+        <figure class="figure">
+            <img src="assets/img/editp.png" class="figure-img img-fluid rounded" alt="Download Page">
+            <figcaption class="figure-caption text-center">After clicking new simply paste your MongoDB path.</figcaption>
+        </figure>
         <br>
+      </div>
       </main>
     </div>
   </div>

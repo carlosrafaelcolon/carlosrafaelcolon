@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <!-- <link rel="icon" href="https://getbootstrap.com/favicon.ico"> -->
+
 
   <title>MongoDB GeekOut</title>
 
@@ -40,9 +40,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" >
-                Why MongoDB
-              </a>
+                <a class="nav-link" href="mongo.html">
+                    SQL vs. NoSQL
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="create.html">
@@ -97,48 +97,55 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1 class="h2 text-centered">Delete Documents</h1>
         </div>
-        <p>Read operations retrieves documents from a collection; i.e. queries a collection for documents. </p>
-          <p>Visit <a href="https://docs.mongodb.com/manual/tutorial/insert-documents/" target="_blank">https://docs.mongodb.com/manual/tutorial/insert-documents/</a></p>
+        <p style="color:red">Delete operations removes documents from a collection. </p>
         <div class="alert alert-success" role="alert">
-          <h4 class="alert-heading">NOTE:</h4>
-          <p>This page provides examples of query operations using the db.collection.find() method in the mongo shell. The examples on this page use the inventory collection. To populate the inventory collection, run the following:
-        </p>
-        </div>
-        <pre>
-            db.inventory.insertMany([
-                { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
-                { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A" },
-                { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
-                { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
-                { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" }
-            ]);
-        </pre>
+            <h4 class="alert-heading">NOTE:</h4>
+            <p>The examples on this page use the inventory collection. To populate the inventory collection, run the following:
+            </p>
+          </div>
+          <pre>
+              db.inventory.insertMany( [
+                  { item: "canvas", qty: 100, size: { h: 28, w: 35.5, uom: "cm" }, status: "A" },
+                  { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+                  { item: "mat", qty: 85, size: { h: 27.9, w: 35.5, uom: "cm" }, status: "A" },
+                  { item: "mousepad", qty: 25, size: { h: 19, w: 22.85, uom: "cm" }, status: "P" },
+                  { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "P" },
+                  { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+                  { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+                  { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" },
+                  { item: "sketchbook", qty: 80, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+                  { item: "sketch pad", qty: 95, size: { h: 22.85, w: 30.5, uom: "cm" }, status: "A" }
+              ] );
+          </pre>
         <div class="container">
           <p>MongoDB provides the following methods to delete documents from a collection:</p>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><code>db.collection.deleteMany()</code> --	Selects documents in a collection or view and returns a cursor to the selected documents.</li>
-            <li class="list-group-item"><code>db.collection.deleteOne()</code> --	Selects documents in a collection or view and returns a cursor to the selected documents.</li>
+            <li class="list-group-item"><code>db.collection.deleteMany()</code> --	Removes all documents that match the filter from a collection.</li>
+            <li class="list-group-item"><code>db.collection.deleteOne()</code> --	Removes a single document from a collection.</li>
           </ul>
          
           <h2>Delete All Documents</h2>
-          <p>To delete all documents from a collection, pass an empty filter document {} to the db.collection.deleteMany() method.</p>
+          <p>To delete all documents from a collection, pass an empty filter document {} to the <code>db.collection.deleteMany()</code> method.</p>
           <p>The following example deletes all documents from the inventory collection:</p>
           <br>
-          <code>db.inventory.deleteMany({})</code>
+          <p><code>db.inventory.deleteMany({})</code></p>
           <br>
           <h2>Delete All Documents that Match a Condition</h2>
           <p>You can specify criteria, or filters, that identify the documents to delete. The filters use the same syntax as read operations.</p>
           <p>To delete all documents that match a deletion criteria, pass a filter parameter to the deleteMany() method.</p>
           <p>The following example removes all documents from the inventory collection where the status field equals "A":</p>
           <br>
-          <code>db.inventory.deleteMany({ status : "A" })</code>
+          <p><code>db.inventory.deleteMany({ status : "A" })</code></p>
           <br>
-          <img src="assets/img/deleteMany.svg" class="img-fluid">
+          <figure class="figure">
+              <img src="assets/img/deleteMany.svg" class="figure-img img-fluid rounded" alt="deleteMany Method">
+              <figcaption class="figure-caption text-center">deleteMany Method Removing all documents where the status field equals "reject"</figcaption>
+          </figure>
           <h2>Delete Only One Document that Matches a Condition</h2>
           <p>To delete at most a single document that matches a specified filter (even though multiple documents may match the specified filter) use the db.collection.deleteOne() method.</p>
           <p>The following example deletes the first document where status is "D":</p>
           <br>
-          <code>db.inventory.deleteOne( { status: "D" } )</code>
+          <p><code>db.inventory.deleteOne( { status: "D" } )</code></p>
         </div>
 
       </main>
