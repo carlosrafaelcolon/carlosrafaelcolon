@@ -39,6 +39,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _welcome_welcome_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./welcome/welcome.component */ "./src/app/welcome/welcome.component.ts");
 /* harmony import */ var _r_stuff_r_stuff_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./r-stuff/r-stuff.component */ "./src/app/r-stuff/r-stuff.component.ts");
 /* harmony import */ var _trouble_shoot_trouble_shoot_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./trouble-shoot/trouble-shoot.component */ "./src/app/trouble-shoot/trouble-shoot.component.ts");
+/* harmony import */ var _r_stats_r_stats_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./r-stats/r-stats.component */ "./src/app/r-stats/r-stats.component.ts");
+
 
 
 
@@ -53,6 +55,10 @@ var routes = [
     {
         path: 'data-wrangling',
         component: _r_stuff_r_stuff_component__WEBPACK_IMPORTED_MODULE_4__["RStuffComponent"]
+    },
+    {
+        path: 'statistics',
+        component: _r_stats_r_stats_component__WEBPACK_IMPORTED_MODULE_6__["RStatsComponent"]
     },
     {
         path: 'troubleshoot',
@@ -82,7 +88,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"wrapper\">\n  <div style=\"text-align:center; margin-top:20px\">\n    <img width=\"300\" alt=\"Raffy\" src=\"/assets/img/raffy-2.png\">\n  </div>\n\n  <div fxLayout=\"row wrap\" fxLayoutAlign=\"space-around center\" class=\"header\">\n    <button mat-button color=\"primary\" [routerLink]=\"['/']\" routerLinkActive=\"active-text\" [routerLinkActiveOptions]='{ exact: true }'>Welcome</button>\n    <button mat-button color=\"primary\" [routerLink]=\"['/data-wrangling']\" routerLinkActive=\"active-text\">Data Wrangling in\n      R</button>\n    <button mat-button color=\"primary\" disabled>Statistics in R</button>\n    <button mat-button color=\"primary\" disabled>MongoDB & NoSQL Databases</button>\n    <button mat-button color=\"primary\" [routerLink]=\"['/troubleshoot']\" routerLinkActive=\"active-text\">Trouble Shooting in\n      R</button>\n  </div>\n</div>\n<div class=\"content\">\n  <div class=\"wrapper\">\n    <router-outlet></router-outlet>\n  </div>\n\n</div>\n\n\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"wrapper container\">\n  <div style=\"text-align:center; margin-top:20px\">\n    <img width=\"300\" alt=\"Raffy\" src=\"/assets/img/raffy-2.png\">\n  </div>\n\n  <div fxLayout=\"row wrap\" fxLayoutAlign=\"space-around center\" class=\"header\">\n    <button mat-button color=\"primary\" [routerLink]=\"['/']\" routerLinkActive=\"active-text\" [routerLinkActiveOptions]='{ exact: true }'>Welcome</button>\n    <button mat-button color=\"primary\" [routerLink]=\"['/data-wrangling']\" routerLinkActive=\"active-text\">Data Wrangling in\n      R</button>\n    <button mat-button color=\"primary\" color=\"primary\" [routerLink]=\"['/statistics']\" routerLinkActive=\"active-text\">Statistics in R</button>\n    <button mat-button color=\"primary\" disabled>MongoDB & NoSQL Databases</button>\n    <button mat-button color=\"primary\" [routerLink]=\"['/troubleshoot']\" routerLinkActive=\"active-text\">Trouble Shooting in\n      R</button>\n  </div>\n</div>\n<div class=\"content\">\n  <div class=\"wrapper\">\n    <router-outlet></router-outlet>\n  </div>\n\n</div>\n\n\n"
 
 /***/ }),
 
@@ -152,6 +158,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _trouble_shoot_trouble_shoot_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./trouble-shoot/trouble-shoot.component */ "./src/app/trouble-shoot/trouble-shoot.component.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+
 
 
 
@@ -184,7 +192,8 @@ var AppModule = /** @class */ (function () {
                 _angular_flex_layout__WEBPACK_IMPORTED_MODULE_3__["FlexLayoutModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatTabsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatButtonModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"]
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_13__["NgbModule"].forRoot()
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
@@ -260,7 +269,7 @@ var MongoDBComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  r-stats works!\n</p>\n"
+module.exports = "<p>\n  Seeing as today we will be talking about statistics in R it is a perfect time to to talk about META Lab's <a target=\"_blank\" href=\"https://middlebury.instructure.com/courses/2790\">Online Data Bootcamp</a> which we will use today. So how about we all enroll to the course and go from there.\n</p>\n"
 
 /***/ }),
 
